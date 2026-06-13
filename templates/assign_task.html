@@ -1,0 +1,40 @@
+{% extends 'layout.html' %}
+
+{% block content %}
+
+<h2>Assign task</h2>
+
+<!-- Fixed: Added missing closing bracket to form tag -->
+<form method="POST">
+
+<div class="mb-3">
+    <label>Student</label>
+    <select name="student_id" class="form-control">
+        <!-- Fixed: Changed 'student' to 'students' to match standard naming -->
+        {% for student in students %}
+        <option value="{{ student.student_id }}">
+            {{ student.first_name }} {{ student.last_name }}
+        </option>
+        {% endfor %}
+    </select>
+</div>
+
+<div class="mb-3">
+    <label>Task</label>
+    <select name="task_id" class="form-control">
+        {% for task in tasks %}
+        <!-- Fixed: Changed 'values' to 'value' -->
+        <option value="{{ task.task_id }}">
+            {{ task.task_name }}
+        </option>
+        {% endfor %}
+    </select>
+</div>
+
+    <button type="submit" class="btn btn-primary">
+        Assign task
+    </button>
+
+</form>
+
+{% endblock %}
